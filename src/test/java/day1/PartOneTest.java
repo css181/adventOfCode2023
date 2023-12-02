@@ -1,7 +1,7 @@
 package day1;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 public class PartOneTest {
 
-	private Day1FromInput day1FromInput;
+	private Day1 day1;
 	
 	@BeforeEach
 	public void setup() {
-		day1FromInput = new Day1FromInput();
+		day1 = new Day1();
 	}
 	
 	@Test 
@@ -28,12 +28,53 @@ public class PartOneTest {
 		expected.add(new ArrayList<>(Arrays.asList('a','1','b','2','c','3','d','4','e','5','f')));
 		expected.add(new ArrayList<>(Arrays.asList('t','r','e','b','7','u','c','h','e','t')));
 		
-		day1FromInput.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day1FromInput.populateInput();
-		assertEquals(expected, day1FromInput.getInputLines());
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+		assertEquals(expected, day1.getInputLines());
 	}
 	
+	@Test
+	void get_first_num_in_each_list() throws Exception {
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1,3,1,7));
+		
+		day1.calculateFirstNumbers();
+		assertEquals(expected, day1.getFirstNumbers());
+	}
 	
+	@Test
+	void get_last_num_in_each_list() throws Exception {
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(2,8,5,7));
+		
+		day1.calculateLastNumbers();
+		assertEquals(expected, day1.getLastNumbers());
+	}
 	
+	@Test
+	void get_two_digit_numbers() throws Exception {
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(12, 38, 15, 77));
+		
+		day1.calculateTwoDigitNumbers();
+		assertEquals(expected, day1.getTwoDigitNumbers());
+	}
 	
+	@Test
+	void adding_all_twoDigitNumbers() throws Exception {
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+		long expected = 142l;
+		
+		assertEquals(expected, day1.addAllTwoDigitNumbers());
+	}
+	
+	@Test
+	void getAnswer() throws Exception {
+//		System.out.println(day1.addAllTwoDigitNumbers());
+		assertEquals(55477l, day1.addAllTwoDigitNumbers());
+	}
 }

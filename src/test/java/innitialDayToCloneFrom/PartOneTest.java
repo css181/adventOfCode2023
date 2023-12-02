@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 
 public class PartOneTest {
 
-	private DayXFromInput dayXFromInput;
+	private DayX dayX;
 	
 	@BeforeEach
 	public void setup() {
-		dayXFromInput = new DayXFromInput();
+		dayX = new DayX();
 	}
 	
 	@Test 
@@ -28,9 +28,9 @@ public class PartOneTest {
 		expected.add(new ArrayList<>(Arrays.asList('a','1','b','2','c','3','d','4','e','5','f')));
 		expected.add(new ArrayList<>(Arrays.asList('t','r','e','b','7','u','c','h','e','t')));
 		
-		dayXFromInput.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		dayXFromInput.populateInput();
-		assertEquals(expected, dayXFromInput.getInputLines());
+		dayX.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		dayX.populateInput();
+		assertEquals(expected, dayX.getInputLines());
 	}
 	
 }
