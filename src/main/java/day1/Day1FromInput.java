@@ -1,4 +1,4 @@
-package innitialDayToCloneFrom;
+package day1;
 
 import java.io.File;
 import java.net.URL;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import utilities.FileUtility;
 
-public class DayXFromInput {
+public class Day1FromInput {
 
 	private static File file;
 	private ArrayList<ArrayList<Character>> inputLines;
@@ -14,14 +14,14 @@ public class DayXFromInput {
 		return inputLines;
 	}
 	
-	public DayXFromInput() {
+	public Day1FromInput() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
 	
 	protected void setFileToUse(File file) {
-		DayXFromInput.file = file;
+		Day1FromInput.file = file;
 	}
 
 	public void populateInput() {
