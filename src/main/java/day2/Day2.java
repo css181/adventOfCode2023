@@ -71,5 +71,13 @@ public class Day2 {
 		return sum;
 	}
 
+	public int getSumOfAllGamePowers() {
+		int sum = 0;
+		for (Game game : games) {
+			sum+=game.getPower();
+		}
+		return sum;
+	}
+
 
 }

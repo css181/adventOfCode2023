@@ -75,4 +75,38 @@ public class Game {
         
         return true;
     }
+
+	public int getMinRedCount() {
+		int maxRed = 0;
+		for (Pull pull : pulls) {
+			if(pull.getReds()>maxRed) {
+				maxRed = pull.getReds();
+			}
+		}
+		return maxRed;
+	}
+
+	public int getMinGreenCount() {
+		int maxGreen = 0;
+		for (Pull pull : pulls) {
+			if(pull.getGreens()>maxGreen) {
+				maxGreen = pull.getGreens();
+			}
+		}
+		return maxGreen;
+	}
+
+	public int getMinBlueCount() {
+		int maxBlue = 0;
+		for (Pull pull : pulls) {
+			if(pull.getBlues()>maxBlue) {
+				maxBlue = pull.getBlues();
+			}
+		}
+		return maxBlue;
+	}
+
+	public long getPower() {
+		return getMinRedCount() * getMinGreenCount() * getMinBlueCount();
+	}
 }
