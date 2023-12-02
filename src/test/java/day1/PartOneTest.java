@@ -19,6 +19,10 @@ public class PartOneTest {
 	public void setup() {
 		day1 = new Day1();
 	}
+	private void useSampleImput() {
+		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day1.populateInput();
+	}
 	
 	@Test 
 	void convertFileToArrayOfCharArrayTest() {
@@ -35,8 +39,7 @@ public class PartOneTest {
 	
 	@Test
 	void get_first_num_in_each_list() throws Exception {
-		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day1.populateInput();
+		useSampleImput();
 		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(1,3,1,7));
 		
 		day1.calculateFirstNumbers();
@@ -45,8 +48,7 @@ public class PartOneTest {
 	
 	@Test
 	void get_last_num_in_each_list() throws Exception {
-		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day1.populateInput();
+		useSampleImput();
 		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(2,8,5,7));
 		
 		day1.calculateLastNumbers();
@@ -55,8 +57,7 @@ public class PartOneTest {
 	
 	@Test
 	void get_two_digit_numbers() throws Exception {
-		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day1.populateInput();
+		useSampleImput();
 		ArrayList<Integer> expected = new ArrayList<>(Arrays.asList(12, 38, 15, 77));
 		
 		day1.calculateTwoDigitNumbers();
@@ -65,8 +66,7 @@ public class PartOneTest {
 	
 	@Test
 	void adding_all_twoDigitNumbers() throws Exception {
-		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day1.populateInput();
+		useSampleImput();
 		long expected = 142l;
 		
 		assertEquals(expected, day1.addAllTwoDigitNumbers());
