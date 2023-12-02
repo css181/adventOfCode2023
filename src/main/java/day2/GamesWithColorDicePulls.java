@@ -4,9 +4,10 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
+import day2.pojos.Game;
 import utilities.FileUtility;
 
-public class Day2 {
+public class GamesWithColorDicePulls {
 
 	private static File file;
 	private ArrayList<Game> games;
@@ -18,14 +19,14 @@ public class Day2 {
 	public static final int GREEN_MAX = 13;
 	public static final int BLUE_MAX = 14;
 
-	public Day2() {
+	public GamesWithColorDicePulls() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
 
 	protected void setFileToUse(File file) {
-		Day2.file = file;
+		GamesWithColorDicePulls.file = file;
 	}
 
 	public void populateInput() {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import utilities.FileUtility;
 
-public class Day1 {
+public class NumbersFromInputLines {
 
 	private static File file;
 	private ArrayList<ArrayList<Character>> inputLines;
@@ -29,14 +29,14 @@ public class Day1 {
 		return twoDigitNumbers;
 	}
 	
-	public Day1() {
+	public NumbersFromInputLines() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
 
 	protected void setFileToUse(File file) {
-		Day1.file = file;
+		NumbersFromInputLines.file = file;
 	}
 
 	public void populateInput() {

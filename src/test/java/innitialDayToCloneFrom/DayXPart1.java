@@ -1,7 +1,7 @@
-package day2;
+package innitialDayToCloneFrom;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,22 +10,21 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+public class DayXPart1 {
 
-public class PartOneTest {
-
-	private Day2 day2;
+	private DayX dayX;
 	
 	@BeforeEach
 	public void setup() {
-		day2 = new Day2();
+		dayX = new DayX();
 	}
 	private void useSampleImput() {
-		day2.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day2.populateInput();
+		dayX.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		dayX.populateInput();
 	}
 	
 	@Test 
-	void populate_from_input() {
+	void convertFileToArrayOfCharArrayTest() {
 		useSampleImput();
 		ArrayList<Game> expected = new ArrayList<Game>();
 		expected.add(new Game(1, new ArrayList<>(Arrays.asList(4,1,0)), new ArrayList<>(Arrays.asList(0,2,2)), new ArrayList<>(Arrays.asList(3,6,0))));
@@ -34,30 +33,7 @@ public class PartOneTest {
 		expected.add(new Game(4, new ArrayList<>(Arrays.asList(3,6,14)), new ArrayList<>(Arrays.asList(1,3,3)), new ArrayList<>(Arrays.asList(6,0,15))));
 		expected.add(new Game(5, new ArrayList<>(Arrays.asList(6,1)), new ArrayList<>(Arrays.asList(3,2)), new ArrayList<>(Arrays.asList(1,2))));
 		
-		assertEquals(expected, day2.getGames());
+		assertEquals(expected, dayX.getGames());
 	}
 	
-	@Test
-	void verify_games_1_2_and_5_only_are_possible() throws Exception {
-		useSampleImput();
-		
-		assertTrue(day2.getGames().get(0).getIsPossible());
-		assertTrue(day2.getGames().get(1).getIsPossible());
-		assertFalse(day2.getGames().get(2).getIsPossible());
-		assertFalse(day2.getGames().get(3).getIsPossible());
-		assertTrue(day2.getGames().get(4).getIsPossible());
-	}
-	
-	@Test
-	void verify_sum_of_possible_game_ids_is_8() throws Exception {
-		useSampleImput();
-		
-		assertEquals(8, day2.getSumOfPossibleGameIDs());
-	}
-	
-	@Test
-	void get_answer() throws Exception {
-//		System.out.println(day2.getSumOfPossibleGameIDs());
-		assertEquals(2551, day2.getSumOfPossibleGameIDs());
-	}
 }

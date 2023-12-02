@@ -1,6 +1,8 @@
-package day2;
+package day2.pojos;
 
 import java.util.ArrayList;
+
+import day2.GamesWithColorDicePulls;
 
 public class Game {
 
@@ -20,34 +22,28 @@ public class Game {
 		this.pulls = pulls;
 		this.isPossible = true;
 		for (Pull pull : pulls) {
-			if(pull.getReds()>Day2.RED_MAX) {
+			if(pull.getReds()>GamesWithColorDicePulls.RED_MAX) {
 				this.isPossible = false;
 				return;
 			}
-			if(pull.getGreens()>Day2.GREEN_MAX) {
+			if(pull.getGreens()>GamesWithColorDicePulls.GREEN_MAX) {
 				this.isPossible = false;
 				return;
 			}
-			if(pull.getBlues()>Day2.BLUE_MAX) {
+			if(pull.getBlues()>GamesWithColorDicePulls.BLUE_MAX) {
 				this.isPossible = false;
 				return;
 			}
 		}
 	}
 	
-	protected int getId() {
+	public int getId() {
 		return id;
 	}
-	protected void setId(int id) {
-		this.id = id;
-	}
-	protected ArrayList<Pull> getPulls() {
+	public ArrayList<Pull> getPulls() {
 		return pulls;
 	}
-	protected void setPulls(ArrayList<Pull> pulls) {
-		this.pulls = pulls;
-	}
-	protected boolean getIsPossible() {
+	public boolean getIsPossible() {
 		return this.isPossible;
 	}
 

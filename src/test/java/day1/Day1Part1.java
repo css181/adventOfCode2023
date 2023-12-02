@@ -11,13 +11,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class PartOneTest {
+public class Day1Part1 {
 
-	private Day1 day1;
+	private NumbersFromInputLines day1;
 	
 	@BeforeEach
 	public void setup() {
-		day1 = new Day1();
+		day1 = new NumbersFromInputLines();
 	}
 	private void useSampleImput() {
 		day1.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));

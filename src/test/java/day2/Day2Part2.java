@@ -1,23 +1,21 @@
 package day2;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-public class PartTwoTest {
+public class Day2Part2 {
 
-	private Day2 day2;
+	private GamesWithColorDicePulls day2;
 	
 	@BeforeEach
 	public void setup() {
-		day2 = new Day2();
+		day2 = new GamesWithColorDicePulls();
 	}
 	private void useSampleImput() {
 		day2.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
