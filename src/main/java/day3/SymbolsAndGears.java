@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import utilities.FileUtility;
 
-public class Day3 {
+public class SymbolsAndGears {
 
 	private static File file;
 	private ArrayList<ArrayList<Character>> char2d;
@@ -17,20 +17,25 @@ public class Day3 {
 	protected ArrayList<Coordinate> getAllSymbolCoordinates() {
 		return allSymbolCoordinates;
 	}
+	private ArrayList<Coordinate> allGearCoordinates;
+	protected ArrayList<Coordinate> getAllGearCoordinates() {
+		return allGearCoordinates;
+	}
 
-	public Day3() {
+	public SymbolsAndGears() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
 
 	protected void setFileToUse(File file) {
-		Day3.file = file;
+		SymbolsAndGears.file = file;
 	}
 
 	public void populateInput() {
 		char2d = FileUtility.convertFileToCharacterArray(file);
 		allSymbolCoordinates = calculateAllSymbolsCoordinates();
+		allGearCoordinates = calculateAllGearCoordinates();
 	}
 
 	public ArrayList<Coordinate> calculateAllSymbolsCoordinates() {
@@ -44,6 +49,16 @@ public class Day3 {
 			}
 		}
 		return allSymbolCoordinates;
+	}
+
+	public ArrayList<Coordinate> calculateAllGearCoordinates() {
+		allGearCoordinates = new ArrayList<Coordinate>();
+		for (Coordinate coordinate : allSymbolCoordinates) {
+			if(isCoordinateGear(coordinate)) {
+				allGearCoordinates.add(coordinate);
+			}
+		}
+		return allGearCoordinates;
 	}
 	
 	private boolean isSymbol(Character character) {
@@ -109,6 +124,15 @@ public class Day3 {
 		}
 		return allNumbersAdjacentToSymbols;
 	}
+	
+	private boolean isCoordinateGear(Coordinate coordinate) {
+		ArrayList<Integer> allNumbersAdjacentToCoordinate = new ArrayList<Integer>();
+		lookAbove(coordinate, allNumbersAdjacentToCoordinate);
+		lookBelow(coordinate, allNumbersAdjacentToCoordinate);
+		lookLeft(coordinate, allNumbersAdjacentToCoordinate);
+		lookRight(coordinate, allNumbersAdjacentToCoordinate);
+		return allNumbersAdjacentToCoordinate.size()==2;
+	}
 
 	private void lookAbove(Coordinate coordinate, ArrayList<Integer> allNumbersAdjacentToSymbols) {
 		int startCol = coordinate.getX()>0 ? coordinate.getX()-1 : 0;
@@ -171,4 +195,25 @@ public class Day3 {
 		}
 		return sum;
 	}
+
+	public long getGearRatio(Coordinate coordinate) {
+		ArrayList<Integer> allNumbersAdjacentToCoordinate = new ArrayList<Integer>();
+		lookAbove(coordinate, allNumbersAdjacentToCoordinate);
+		lookBelow(coordinate, allNumbersAdjacentToCoordinate);
+		lookLeft(coordinate, allNumbersAdjacentToCoordinate);
+		lookRight(coordinate, allNumbersAdjacentToCoordinate);
+		if(allNumbersAdjacentToCoordinate.size()!=2) {
+			throw new RuntimeException("'Gear' does not have 2 numbers, so it's not a gear");
+		}
+		return allNumbersAdjacentToCoordinate.get(0) * allNumbersAdjacentToCoordinate.get(1);
+	}
+
+	public long calculateSumOfAllGearRatios() {
+		long sum = 0;
+		for (Coordinate gear : allGearCoordinates) {
+			sum+=getGearRatio(gear);
+		}
+		return sum;
+	}
+
 }

@@ -8,18 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class Day3Part1 {
 
-	private Day3 day3;
+	private SymbolsAndGears day3;
 	
 	@BeforeEach
 	public void setup() {
-		day3 = new Day3();
+		day3 = new SymbolsAndGears();
 	}
 	private void useSampleImput() {
 		day3.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
