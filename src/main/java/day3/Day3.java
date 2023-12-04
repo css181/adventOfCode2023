@@ -117,10 +117,22 @@ public class Day3 {
 			Coordinate coordToLook = new Coordinate(col, coordinate.getY()-1);
 			if(isNumeric(char2d.get(coordToLook.getY()).get(coordToLook.getX()))) {
 				allNumbersAdjacentToSymbols.add(getNumberFromCoordinate(coordToLook));
-				break;
+				break; //So we don't add ##., .##, or ### multiple times
 			}
 		}
+		//Check for potential #.#
+		Coordinate coordToLook = new Coordinate(coordinate.getX(), coordinate.getY()-1);
+		if(isNumberThenDotThenNumber(coordToLook)) {
+			Coordinate additionalNumber = new Coordinate(coordinate.getX()+1, coordinate.getY()-1);
+			allNumbersAdjacentToSymbols.add(getNumberFromCoordinate(additionalNumber));
+		}
 	}
+	private boolean isNumberThenDotThenNumber(Coordinate coordToLook) {
+		return isNumeric(char2d.get(coordToLook.getY()).get(coordToLook.getX()-1)) &&
+				!isNumeric(char2d.get(coordToLook.getY()).get(coordToLook.getX())) &&
+				isNumeric(char2d.get(coordToLook.getY()).get(coordToLook.getX()+1));
+	}
+
 	private void lookBelow(Coordinate coordinate, ArrayList<Integer> allNumbersAdjacentToSymbols) {
 		int startCol = coordinate.getX()>0 ? coordinate.getX()-1 : 0;
 		int endCol = coordinate.getX()<char2d.get(0).size() ? coordinate.getX()+1 : char2d.get(0).size();
@@ -128,8 +140,14 @@ public class Day3 {
 			Coordinate coordToLook = new Coordinate(col, coordinate.getY()+1);
 			if(isNumeric(char2d.get(coordToLook.getY()).get(coordToLook.getX()))) {
 				allNumbersAdjacentToSymbols.add(getNumberFromCoordinate(coordToLook));
-				break;
+				break; //So we don't add ##., .##, or ### multiple times
 			}
+		}
+		//Check for potential #.#
+		Coordinate coordToLook = new Coordinate(coordinate.getX(), coordinate.getY()+1);
+		if(isNumberThenDotThenNumber(coordToLook)) {
+			Coordinate additionalNumber = new Coordinate(coordinate.getX()+1, coordinate.getY()+1);
+			allNumbersAdjacentToSymbols.add(getNumberFromCoordinate(additionalNumber));
 		}
 	}
 	private void lookLeft(Coordinate coordinate, ArrayList<Integer> allNumbersAdjacentToSymbols) {

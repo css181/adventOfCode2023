@@ -1,11 +1,14 @@
 package day3;
 
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,8 +99,9 @@ public class Day3Part1 {
 	
 	@Test
 	void get_part1_answer() throws Exception {
-		System.out.println(day3.getAllNumbersAdjacentToSymbols().size() + " total numbers being added");
-		System.out.println(day3.getAllNumbersAdjacentToSymbols());
-		System.out.println(day3.calculateSumOfAllNumbersAdjacentToSymbols());
+//		System.out.println(day3.getAllNumbersAdjacentToSymbols().size() + " total numbers being added");
+//		System.out.println(day3.getAllNumbersAdjacentToSymbols());
+//		System.out.println(day3.calculateSumOfAllNumbersAdjacentToSymbols());
+		assertEquals(546563, day3.calculateSumOfAllNumbersAdjacentToSymbols());
 	}
 }
