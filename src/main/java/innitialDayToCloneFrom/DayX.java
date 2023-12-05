@@ -14,10 +14,6 @@ public class DayX {
 		return games;
 	}
 
-	public static final int RED_MAX = 12;
-	public static final int GREEN_MAX = 13;
-	public static final int BLUE_MAX = 14;
-
 	public DayX() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
