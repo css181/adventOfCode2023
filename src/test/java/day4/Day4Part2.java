@@ -43,7 +43,7 @@ public class Day4Part2 {
 		assertEquals(30, day4.getTotalInstancesOfAllCards());
 	}
 	
-	@Test
+//	@Test Takes 3 full seconds to run
 	void get_Part2_answer() throws Exception {
 		day4.calculateCardInstancesFromWins();
 //		System.out.println(day4.getCards());

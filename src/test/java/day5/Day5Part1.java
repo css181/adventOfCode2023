@@ -1,4 +1,4 @@
-package innitialDayToCloneFrom;
+package day5;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,17 +10,17 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class DayXPart1 {
+public class Day5Part1 {
 
-	private DayX dayX;
+	private Day5 day5;
 	
 	@BeforeEach
 	public void setup() {
-		dayX = new DayX();
+		day5 = new Day5();
 	}
 	private void useSampleImput() {
-		dayX.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		dayX.populateInput();
+		day5.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
+		day5.populateInput();
 	}
 	
 	@Test 
@@ -33,7 +33,7 @@ public class DayXPart1 {
 		expected.add(new Game(0, new ArrayList<>(Arrays.asList(3,6,14)), new ArrayList<>(Arrays.asList(1,3,3)), new ArrayList<>(Arrays.asList(6,0,15))));
 		expected.add(new Game(0, new ArrayList<>(Arrays.asList(6,1)), new ArrayList<>(Arrays.asList(3,2)), new ArrayList<>(Arrays.asList(1,2))));
 		
-		assertEquals(expected, dayX.getGames());
+		assertEquals(expected, day5.getGames());
 	}
 	
 }

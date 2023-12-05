@@ -1,4 +1,4 @@
-package innitialDayToCloneFrom;
+package day5;
 
 import java.io.File;
 import java.net.URL;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import utilities.FileUtility;
 
-public class DayX {
+public class Day5 {
 
 	private static File file;
 	private ArrayList<Game> games;
@@ -14,14 +14,14 @@ public class DayX {
 		return games;
 	}
 
-	public DayX() {
+	public Day5() {
 		URL fileName = getClass().getResource("Input.txt");
 		file = new File(fileName.getPath());
 		populateInput();
 	}
 
 	protected void setFileToUse(File file) {
-		DayX.file = file;
+		Day5.file = file;
 	}
 
 	public void populateInput() {
@@ -35,5 +35,4 @@ public class DayX {
 	private Game createPOJO_FromInputLine(String line) {
 		return new Game(0, null, null, null);
 	}
-
 }
