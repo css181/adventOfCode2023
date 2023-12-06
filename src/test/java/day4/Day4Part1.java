@@ -70,6 +70,7 @@ public class Day4Part1 {
 	
 	@Test
 	void get_Part1_answer() throws Exception {
-		System.out.println(day4.getPointTotalOfAllCards());
+//		System.out.println(day4.getPointTotalOfAllCards());
+		assertEquals(21158, day4.getPointTotalOfAllCards());
 	}
 }

@@ -2,21 +2,21 @@ package day6;
 
 public class Race {
 
-	private int time;
-	private int distance;
+	private long time;
+	private long distance;
 	
-	public Race(int time, int distance) {
+	public Race(long time, long distance) {
 		super();
 		this.time = time;
 		this.distance = distance;
 	}
-	protected int getTime() {
+	protected long getTime() {
 		return time;
 	}
-	protected void setTime(int time) {
+	protected void setTime(long time) {
 		this.time = time;
 	}
-	protected int getDistance() {
+	protected long getDistance() {
 		return this.distance;
 	}
 

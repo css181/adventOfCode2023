@@ -49,6 +49,7 @@ public class Day6Part1 {
 	
 	@Test
 	void get_Part1_answer() throws Exception {
-		System.out.println(day6.calcMarginOfErrorForAllRaces());
+//		System.out.println(day6.calcMarginOfErrorForAllRaces());
+		assertEquals(4568778, day6.calcMarginOfErrorForAllRaces());
 	}
 }

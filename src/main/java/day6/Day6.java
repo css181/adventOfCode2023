@@ -10,8 +10,12 @@ public class Day6 {
 
 	private static File file;
 	private ArrayList<Race> races;
+	private Race singleRace;
 	public ArrayList<Race> getRaces() {
 		return races;
+	}
+	public Race getSingleRace() {
+		return singleRace;
 	}
 
 	public Day6() {
@@ -31,14 +35,20 @@ public class Day6 {
 		String[] distances = inputLines.get(1).substring(10).split(" ");
 		ArrayList<Integer> timesList = new ArrayList<Integer>();
 		ArrayList<Integer> distanceList = new ArrayList<Integer>();
+		//Part 2
+		String singleTime = "";
+		String singleDistance = "";
+		
 		for (String time : times) {
 			if(time.length()>0) {
 				timesList.add(Integer.valueOf(time));
+				singleTime+=time;
 			}
 		}
 		for(String distance: distances) {
 			if(distance.length()>0) {
 				distanceList.add(Integer.valueOf(distance));
+				singleDistance+=distance;
 			}
 		}
 		if(timesList.size()!=distanceList.size()) {
@@ -47,13 +57,15 @@ public class Day6 {
 		for(int index=0; index<timesList.size(); index++) {
 			races.add(new Race(timesList.get(index), distanceList.get(index)));
 		}
+		
+		singleRace = new Race(Long.valueOf(singleTime), Long.valueOf(singleDistance));
 	}
 
 	public int calculateNumOfWaysToBreakRecordForRace(Race race) {
 		int winCount=0;
-		int time = race.getTime();
+		long time = race.getTime();
 		for(int pushSeconds=0; pushSeconds<race.getTime(); pushSeconds++) {
-			int totalDistance = pushSeconds	* (time-pushSeconds);
+			long totalDistance = pushSeconds * (time-pushSeconds);
 			if(totalDistance>race.getDistance()) {
 				winCount++;
 			}
@@ -68,5 +80,29 @@ public class Day6 {
 		}
 		return margin;
 	}
+	public int getMinPushTimeToSetRecord(Race race) {
+		int minPushTime = -1;
+		for(int pushTime=1; pushTime<race.getTime()-1; pushTime++) {
+			long totalDistance = pushTime	* (race.getTime()-pushTime);
+			if(totalDistance>race.getDistance()) {
+				minPushTime=pushTime;
+				break;
+			}
+		}
+		return minPushTime;
+	}
+	public long getMaxPushTimeToSetRecord(Race race) {
+		long maxPushTime = race.getTime()-1;
+		for(long pushTime=maxPushTime; pushTime>1; pushTime--) {
+			long totalDistance = pushTime * (race.getTime()-pushTime);
+			if(totalDistance>race.getDistance()) {
+				maxPushTime=pushTime;
+				break;
+			}
+		}
+		return maxPushTime;
+	}
+
+
 
 }

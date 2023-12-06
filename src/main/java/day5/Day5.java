@@ -119,30 +119,30 @@ public class Day5 {
 			seedEnds.add(seedEnd);
 		}
 		long minLocation = Long.MAX_VALUE;
-		String minFlow = "";
+//		String minFlow = "";
 		for (int index=0; index<seedStarts.size(); index++) {
 			long counter = 0;
 			long curSeed = seedStarts.get(index)+counter;
 			do {
 				curSeed = seedStarts.get(index)+counter;
-				System.out.println("seed: " + curSeed + " ~ " + (seedEnds.get(index) - curSeed) + " left, In list " + String.valueOf(index+1) + " of " + seedStarts.size()
-						+ "curMinLocation: " + minLocation);
+//				System.out.println("seed: " + curSeed + " ~ " + (seedEnds.get(index) - curSeed) + " left, In list " + String.valueOf(index+1) + " of " + seedStarts.size()
+//						+ "curMinLocation: " + minLocation);
 				
 				long curSeedLocation = curSeed;
-				String curFlow = curSeedLocation + "->";
+//				String curFlow = curSeedLocation + "->";
 				for (Mapper mapper : mappers) {
 					curSeedLocation = processMapping(curSeedLocation, mapper);
-					curFlow+= curSeedLocation + "->";
+//					curFlow+= curSeedLocation + "->";
 				}
 				if(curSeedLocation<minLocation) {
 					minLocation = curSeedLocation;
-					minFlow = curFlow.substring(0, curFlow.length()-2);
+//					minFlow = curFlow.substring(0, curFlow.length()-2);
 				}
 				counter++;
 			} while (curSeed<seedEnds.get(index));
 		}
-		System.out.println(minFlow);
-		System.out.println("Answer: " + minLocation);
+//		System.out.println(minFlow);
+//		System.out.println("Answer: " + minLocation);
 		return minLocation;
 	}
 
