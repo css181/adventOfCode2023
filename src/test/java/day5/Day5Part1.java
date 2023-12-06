@@ -20,7 +20,7 @@ public class Day5Part1 {
 	}
 	private void useSampleImput() {
 		day5.setFileToUse(new File(getClass().getResource("SampleInput.txt").getPath()));
-		day5.populateInput();
+		day5.populateInput_Part1();
 	}
 
 	@Test 
@@ -84,6 +84,7 @@ public class Day5Part1 {
 	
 	@Test
 	void get_Part1_answer() throws Exception {
-		System.out.println(day5.determineLowestFinalLocation());
+//		System.out.println(day5.determineLowestFinalLocation());
+		assertEquals(836040384l, day5.determineLowestFinalLocation());
 	}
 }
