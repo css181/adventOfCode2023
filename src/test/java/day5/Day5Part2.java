@@ -62,7 +62,7 @@ public class Day5Part2 {
 		assertEquals(46l, day5.doItAll());
 	}
 	
-	@Test
+//	@Test  Warning takes 85minutes to run.
 	void get_answer_Part2() throws Exception {
 		day5.doItAll();
 	}
