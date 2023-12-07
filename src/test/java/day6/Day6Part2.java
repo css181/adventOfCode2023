@@ -51,6 +51,11 @@ public class Day6Part2 {
 	}
 	
 	@Test
+	void alternate() throws Exception {
+		assertEquals(28973936, day6.calculateNumOfWaysToBreakRecordForRace(day6.getSingleRace()));
+	}
+	
+	@Test
 	void get_Part2_answer() throws Exception {
 		int min = day6.getMinPushTimeToSetRecord(day6.getSingleRace());
 		long max = day6.getMaxPushTimeToSetRecord(day6.getSingleRace());
