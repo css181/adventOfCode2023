@@ -28,12 +28,8 @@ public class DayX {
 		games = new ArrayList<Game>();
 		ArrayList<String> inputLines = FileUtility.convertFileToStringArray(file);
 		for (String line : inputLines) {
-			games.add(createPOJO_FromInputLine(line));
+			games.add(new Game(line));
 		}
-	}
-
-	private Game createPOJO_FromInputLine(String line) {
-		return new Game(0, null, null, null);
 	}
 
 }

@@ -1,15 +1,12 @@
 package innitialDayToCloneFrom;
 
-import java.util.ArrayList;
-
 public class Game {
 
 	private int id;
 	private boolean isPossible;
 	
-	public Game(Integer id, ArrayList<Integer> reds, ArrayList<Integer> greens, ArrayList<Integer> blues) {
-		this.id = id;
-		this.isPossible = true;
+	public Game(String inputLine) {
+		//Assign properties from the input line
 	}
 	
 	protected int getId() {

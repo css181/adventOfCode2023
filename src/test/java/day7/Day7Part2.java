@@ -121,7 +121,7 @@ public class Day7Part2 {
 	
 	@Test
 	void get_Part1_anser() throws Exception {
-		System.out.println(day7.calculateTotalWinnings());
-//		assertEquals(254024898, day7.calculateTotalWinnings());
+//		System.out.println(day7.calculateTotalWinnings());
+		assertEquals(254115617, day7.calculateTotalWinnings());
 	}
 }
