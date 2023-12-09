@@ -69,6 +69,7 @@ public class Day9Part1 {
 	
 	@Test
 	void get_part1_answer() throws Exception {
-		System.out.println(day9.getSumOfAllPredictions());
+//		System.out.println(day9.getSumOfAllPredictions());
+		assertEquals(1479011877l, day9.getSumOfAllPredictions());
 	}
 }

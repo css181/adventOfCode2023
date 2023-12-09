@@ -85,4 +85,25 @@ public class Day9 {
 		return sum;
 	}
 
+	public Long getPriorPredictionFromTreeBreakdown(ArrayList<ArrayList<Long>> treeBreakdown) {
+		long curPrediction = -1;
+		for(int lineIndex=treeBreakdown.size()-1; lineIndex>=1; lineIndex--) {
+			ArrayList<Long> curLine = treeBreakdown.get(lineIndex);
+			ArrayList<Long> priorLine = treeBreakdown.get(lineIndex-1);
+			curPrediction = priorLine.get(0) - curLine.get(0);
+			treeBreakdown.get(lineIndex-1).set(0, curPrediction);
+		}
+		return curPrediction;
+	}
+
+	public Long getSumOfAllPriorPredictions() {
+		long sum = 0;
+		for (ArrayList<Long> line : input) {
+			ArrayList<ArrayList<Long>> curTreeBreakdown = getTreeBreakdownForInputLine(line);
+			Long curPrediction = getPriorPredictionFromTreeBreakdown(curTreeBreakdown);
+			sum+=curPrediction;
+		}
+		return sum;
+	}
+
 }
