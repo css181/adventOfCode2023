@@ -80,4 +80,105 @@ public class Day8 {
 		return moveCount;
 	}
 
+	public long moveSimultaneousUntilAllZ() {
+		long moveCount = 0;
+		ArrayList<Node> curNodes = getAllNodesEndingWithA();
+		int movePosition = 0;
+		do {
+			if(movePosition>=moves.size()) {
+				movePosition = 0;
+			}
+			moveCount++;
+			if(moves.get(movePosition++) == 'L') {
+				curNodes = advanceAllNodeLeft(curNodes);
+			} else {
+				curNodes = advanceAllNodeRight(curNodes);
+			}
+		} while (atLeastOneNodeDoesNotEndInZ(curNodes));
+		return moveCount;
+	}
+	private ArrayList<Node> advanceAllNodeLeft(ArrayList<Node> curNodes) {
+		ArrayList<Node> movedNodes = new ArrayList<Node>(curNodes);
+		for (int x=0; x<movedNodes.size(); x++) {
+			Node curNode = movedNodes.get(x);
+			movedNodes.set(x, curNode.getLeft());
+		}
+		return movedNodes;
+	}
+	private ArrayList<Node> advanceAllNodeRight(ArrayList<Node> curNodes) {
+		ArrayList<Node> movedNodes = new ArrayList<Node>(curNodes);
+		for (int x=0; x<movedNodes.size(); x++) {
+			Node curNode = movedNodes.get(x);
+			movedNodes.set(x, curNode.getRight());
+		}
+		return movedNodes;
+	}
+
+	private boolean atLeastOneNodeDoesNotEndInZ(ArrayList<Node> curNodes) {
+		for (Node node : curNodes) {
+			if(!node.getName().endsWith("Z")) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private ArrayList<Node> getAllNodesEndingWithA() {
+		ArrayList<Node> startNodes = new ArrayList<Node>();
+		for (Node node : nodes) {
+			if(node.getName().endsWith("A")) { 
+				startNodes.add(node);
+			}
+		}
+		return startNodes;
+	}
+
+
+	public ArrayList<Long> getMovesOfEachStartTillEnd() {
+		ArrayList<Long> movesTillZ = new ArrayList<Long>();
+		ArrayList<Node> startNodes = getAllNodesEndingWithA();
+		for (Node node : startNodes) {
+			int movePosition = 0;
+			long moveCount = 0;
+			do {
+				if(movePosition>=moves.size()) {
+					movePosition = 0;
+				}
+				moveCount++;
+				if(moves.get(movePosition++) == 'L') {
+					node = node.getLeft();
+				} else {
+					node = node.getRight();
+				}
+			} while (!node.getName().endsWith("Z"));
+			movesTillZ.add(moveCount);
+		}
+		return movesTillZ;
+	}
+
+	public long getLMCOfAllMovesTillZ() {
+		ArrayList<Long> movesTillZ = getMovesOfEachStartTillEnd();
+		return lcmOfArray(movesTillZ);
+	}
+	private long gcd(long a, long b)
+	{
+	    while (b > 0)
+	    {
+	        long temp = b;
+	        b = a % b; // % is remainder
+	        a = temp;
+	    }
+	    return a;
+	}
+	private long lcm(long a, long b)
+	{
+	    return a * (b / gcd(a, b));
+	}
+	public long lcmOfArray(ArrayList<Long> input)
+	{
+	    long result = input.get(0);
+	    for(int i = 1; i < input.size(); i++) result = lcm(result, input.get(i));
+	    return result;
+	}
+	
 }

@@ -58,6 +58,7 @@ public class Day8Part1 {
 	
 	@Test
 	void get_part1_answer() throws Exception {
-		System.out.println(day8.getTotalMoevesTillZZZ());
+//		System.out.println(day8.getTotalMoevesTillZZZ());
+		assertEquals(12357789728873l, day8.getLMCOfAllMovesTillZ());
 	}
 }
