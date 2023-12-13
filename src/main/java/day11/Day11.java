@@ -80,7 +80,7 @@ public class Day11 {
 		}
 		grid = newGrid;
 	}
-
+	
 	private ArrayList<ArrayList<Character>> addDotForEachRowInColToNewGrid(int colToAdd, int alreadyAdded, ArrayList<ArrayList<Character>> grid) {
 		ArrayList<ArrayList<Character>> newGrid = new ArrayList<ArrayList<Character>>();
 		for (int curRow=0; curRow<grid.size(); curRow++) {
@@ -109,7 +109,6 @@ public class Day11 {
 	}
 
 	public ArrayList<Coordinate> getAllGalaxyCoordinates() {
-		expandGridForNoGalaxyRowsAndCols();
 		ArrayList<Coordinate> galaxyCoordinates = new ArrayList<Coordinate>();
 		for(int row=0; row<grid.size(); row++) {
 			for(int col=0; col<grid.get(row).size(); col++) {
@@ -139,6 +138,18 @@ public class Day11 {
 		ArrayList<CoordinatePair> galaxyPairs = getAllGalaxyPairs();
 		for (CoordinatePair coordinatePair : galaxyPairs) {
 			totalDistance+=coordinatePair.getDistance();
+		}
+		return totalDistance;
+	}
+
+	public Long getTotalDistanceOfAllGalaxiesByAdding_X_RowsAndCols(long rowsAndColsToAdd) {
+		ArrayList<Integer> rowsWithNoGalaxies = getRowsWithNoGalaxies();
+		ArrayList<Integer> colsWithNoGalaxies = getColsWithNoGalaxies();
+		long totalDistance = 0;
+		
+		ArrayList<CoordinatePair> galaxyPairs = getAllGalaxyPairs();
+		for (CoordinatePair coordinatePair : galaxyPairs) {
+			totalDistance+=coordinatePair.getDistance(rowsWithNoGalaxies, colsWithNoGalaxies, rowsAndColsToAdd);
 		}
 		return totalDistance;
 	}

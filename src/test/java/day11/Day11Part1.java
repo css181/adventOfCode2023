@@ -92,6 +92,7 @@ public class Day11Part1 {
 		expected.add(new Coordinate(0, 11));
 		expected.add(new Coordinate(5, 11));
 		
+		day11.expandGridForNoGalaxyRowsAndCols();
 		assertEquals(expected, day11.getAllGalaxyCoordinates());
 	}
 	
@@ -102,7 +103,10 @@ public class Day11Part1 {
 		expected.add(new CoordinatePair(new Coordinate(4, 0), new Coordinate(9, 1)));
 		expected.add(new CoordinatePair(new Coordinate(4, 0), new Coordinate(0, 2)));
 		expected.add(new CoordinatePair(new Coordinate(0, 11), new Coordinate(5, 11)));
+		
+		day11.expandGridForNoGalaxyRowsAndCols();
 		ArrayList<CoordinatePair> allGalaxyPairs = day11.getAllGalaxyPairs();
+		
 		assertEquals(36, allGalaxyPairs.size());
 		assertTrue(allGalaxyPairs.contains(expected.get(0)));
 		assertTrue(allGalaxyPairs.contains(expected.get(1)));
@@ -127,12 +131,14 @@ public class Day11Part1 {
 	@Test
 	void verify_sample_input_total_distance() throws Exception {
 		useSampleImput();
+		day11.expandGridForNoGalaxyRowsAndCols();
 		
 		assertEquals(374, day11.getTotalDistanceOfAllGalaxies());
 	}
 	
 	@Test
 	void get_part1_answer() throws Exception {
+		day11.expandGridForNoGalaxyRowsAndCols();
 //		System.out.println(day11.getTotalDistanceOfAllGalaxies());
 		assertEquals(9565386l, day11.getTotalDistanceOfAllGalaxies());
 	}

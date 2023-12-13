@@ -1,5 +1,7 @@
 package day11;
 
+import java.util.ArrayList;
+
 public class CoordinatePair {
 
 	private Coordinate one;
@@ -55,6 +57,42 @@ public class CoordinatePair {
 			distance+=two.getY()-one.getY();
 		} else {
 			distance+=one.getY()-two.getY();
+		}
+		return distance;
+	}
+	
+	public long getDistance(ArrayList<Integer> rowsWithNoGalaxies, ArrayList<Integer> colsWithNoGalaxies, long rowsAndColsToAdd) {
+		long distance = 0;
+		rowsAndColsToAdd--;
+		if(one.getX()<two.getX()) {
+			distance+=two.getX()-one.getX();
+			for(int x=one.getX()+1; x<=two.getX()-1; x++) {
+				if(colsWithNoGalaxies.contains(x)) {
+					distance+=rowsAndColsToAdd;
+				}
+			}
+		} else {
+			distance+=one.getX()-two.getX();
+			for(int x=two.getX()+1; x<=one.getX()-1; x++) {
+				if(colsWithNoGalaxies.contains(x)) {
+					distance+=rowsAndColsToAdd;
+				}
+			}
+		}
+		if(one.getY()<two.getY()) {
+			distance+=two.getY()-one.getY();
+			for(int y=one.getY()+1; y<=two.getY()-1; y++) {
+				if(rowsWithNoGalaxies.contains(y)) {
+					distance+=rowsAndColsToAdd;
+				}
+			}
+		} else {
+			distance+=one.getY()-two.getY();
+			for(int y=two.getY()+1; y<=one.getY()-1; y++) {
+				if(rowsWithNoGalaxies.contains(y)) {
+					distance+=rowsAndColsToAdd;
+				}
+			}
 		}
 		return distance;
 	}
