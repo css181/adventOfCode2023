@@ -2,6 +2,8 @@ package day10;
 
 import java.util.ArrayList;
 
+import day10.Location.Status;
+
 public class Map {
 
 	private ArrayList<ArrayList<Location>> locations;
@@ -63,5 +65,50 @@ public class Map {
         
         return true;
     }
+
+    public String printAllStatuses() {
+		String print = "";
+		for(int row=0; row<locations.size(); row++) {
+			for(int col=0; col<locations.get(row).size(); col++) {
+				Location location = locations.get(row).get(col);
+				print+="[";
+				switch (location.getStatus()) {
+				case OUTSIDE: {
+					print+="OUTSIDE";
+					break;
+				}
+				case INSIDE: {
+					print+="INSIDE ";
+					break;
+				}
+				case LOOP: {
+					print+=" LOOP  ";
+					break;
+				}
+				case UNKNOWN: {
+					print+="UNKNOWN";
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + location.getStatus());
+				}
+				print+="]";
+			}
+			print+="\n";
+		}
+		return print;
+	}
+
+	public Integer getNumOfInsideStatuses() {
+		int total = 0;
+		for(int row=0; row<locations.size(); row++) {
+			for(int col=0; col<locations.get(row).size(); col++) {
+				Location location = locations.get(row).get(col);
+				if(location.getStatus()==Status.INSIDE)
+					total++;
+			}
+		}
+		return total;
+	}
 
 }

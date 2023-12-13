@@ -289,32 +289,32 @@ public class Day10Part1 {
 		String expected = ""
 				+ "..F7.\n"
 				+ ".FJ|.\n"
-				+ "SJ.L7\n"
+				+ "FJ.L7\n"
 				+ "|F--J\n"
 				+ "LJ...\n";
 		
-		day10.setPropertyOnLocationIfInLoop();
+		day10.minifyMapAndSetPropertyOnLocationIfInLoop();
 		assertTrue(day10.getMap().getLocations().get(2).get(1).getIsInLoop());
 		assertFalse(day10.getMap().getLocations().get(0).get(0).getIsInLoop());
 		assertEquals(expected, day10.getMap().toString());
 	}
 	
-	@Test
+//	@Test Note: Requires increasing Heap Size
 	void generate_MainMinifiedInput_from_full_input() throws Exception {
-		day10.setPropertyOnLocationIfInLoop();
+		day10.minifyMapAndSetPropertyOnLocationIfInLoop();
 //		System.out.println(day10.getMap());
 	}
 	
 	@Test
 	void furthest_away_is_half_of_total_locations_in_loop() throws Exception {
 		useSampleImput();
-		day10.setPropertyOnLocationIfInLoop();
+		day10.minifyMapAndSetPropertyOnLocationIfInLoop();
 		assertEquals(8, day10.getNumOfLocationsInLoopDividedBy2());
 	}
 	
-	@Test
+//	@Test Note: Requires increasing Heap Size
 	void get_part1_answer() throws Exception {
-		day10.setPropertyOnLocationIfInLoop();
+		day10.minifyMapAndSetPropertyOnLocationIfInLoop();
 //		System.out.println(day10.getNumOfLocationsInLoopDividedBy2());
 		assertEquals(6909, day10.getNumOfLocationsInLoopDividedBy2());
 	}

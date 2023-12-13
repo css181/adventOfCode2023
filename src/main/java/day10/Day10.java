@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 
+import day10.Location.Status;
 import utilities.FileUtility;
 
 public class Day10 {
@@ -29,11 +30,11 @@ public class Day10 {
 	public void populateInput() {
 		ArrayList<String> inputLines = FileUtility.convertFileToStringArray(file);
 		map = new Map(inputLines);
-		populateAllOptions();
+		populateAllOptions(map);
 	}
 
-	private void populateAllOptions() {
-		ArrayList<ArrayList<Location>> locations = map.getLocations();
+	private void populateAllOptions(Map curMap) {
+		ArrayList<ArrayList<Location>> locations = curMap.getLocations();
 		for(int row=0; row<locations.size(); row++) {
 			ArrayList<Location> curRow = locations.get(row);
 			for(int col=0; col<curRow.size(); col++) {
@@ -108,7 +109,7 @@ public class Day10 {
 		}
 	}
 
-	public void setPropertyOnLocationIfInLoop() {
+	public void minifyMapAndSetPropertyOnLocationIfInLoop() {
 		Location start = map.getStart();
 		markInLoop(start, null);
 		ArrayList<ArrayList<Location>> locations = map.getLocations();
@@ -116,6 +117,9 @@ public class Day10 {
 			ArrayList<Location> curRow = locations.get(row);
 			for(int col=0; col<curRow.size(); col++) {
 				Location curLocation = curRow.get(col);
+				if(curLocation.getSymbol()=='S') {
+					curLocation.setSymbol(treatSAs);
+				}
 				if(!curLocation.getIsInLoop()) {
 					curLocation.setSymbol('.');
 				}
@@ -128,8 +132,9 @@ public class Day10 {
 			//we've gone through the whole loop
 			return;
 		}
-		//Inside the loop aOpt and bOpt can never be null
+		//Note: When within the loop aOpt and bOpt can never be null
 		curLoc.setIsInLoop(true);
+		curLoc.setStatus(Status.LOOP);
 		if(prior==null) {
 			//this is start, just go optionA next
 			markInLoop(curLoc.getaOption(), curLoc);
@@ -154,6 +159,58 @@ public class Day10 {
 			}
 		}
 		return Double.valueOf(sum)/2.0;
+	}
+
+	public void calculateStatusesOfMap() {
+		minifyMapAndSetPropertyOnLocationIfInLoop();
+		ArrayList<ArrayList<Location>> locations = map.getLocations();
+		for(int row=0; row<locations.size(); row++) {
+			boolean within=false;
+			boolean isUpDir=false;
+			for(int col=0; col<locations.get(row).size(); col++) {
+				Location location = locations.get(row).get(col);
+				char ck = location.getSymbol();
+				switch (ck) {
+				case '|': {
+					within=!within;					
+					break;
+				}
+				case '-': {
+					break;
+				}
+				case 'L': {
+					isUpDir = true;
+					break;
+				}
+				case 'F': {
+					isUpDir = false;
+					break;
+				}
+				case '7': {
+					if(isUpDir)
+						within=!within;	
+					isUpDir = false;
+					break;
+				}
+				case 'J': {
+					if(!isUpDir)
+						within=!within;		
+					isUpDir = false;
+					break;
+				}
+				case '.': {
+					break;
+				}
+				default:
+					throw new IllegalArgumentException("Unexpected value: " + ck);
+				}
+				if(location.getStatus()!=Status.LOOP)
+					if(within)
+						location.setStatus(Status.INSIDE);
+					else
+						location.setStatus(Status.OUTSIDE);
+			}
+		}
 	}
 
 }

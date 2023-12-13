@@ -1,12 +1,15 @@
 package day10;
 
 public class Location {
+	public enum Status { OUTSIDE, INSIDE, LOOP, UNKNOWN }
+	
 	private char symbol;
 	private Location aOption;
 	private Location bOption;
 	private boolean isStart;
 	private Coordinate coordinate;
 	private boolean isInLoop;
+	private Status status;
 	
 	public Location(char symbol, Coordinate coordinate) {
 		super();
@@ -14,6 +17,7 @@ public class Location {
 		this.coordinate = coordinate;
 		this.isStart = (symbol=='S');
 		this.isInLoop = false;
+		this.status = Status.UNKNOWN;
 	}
 	public char getSymbol() {
 		return symbol;
@@ -44,6 +48,12 @@ public class Location {
 	}
 	public void setIsInLoop(boolean isInLoop) {
 		this.isInLoop = isInLoop;
+	}
+	public Status getStatus() {
+		return status;
+	}
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 
 	@Override
